@@ -1,0 +1,24 @@
+.o_attendance_dashboard {
+    background-color: #f8f9fc;
+}
+.o_attendance_dashboard .card {
+    border-radius: 0.35rem;
+}
+.o_attendance_dashboard .border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+.o_attendance_dashboard .border-left-success {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+.o_attendance_dashboard .border-left-info {
+    border-left: 0.25rem solid #36b9cc !important;
+}
+.o_attendance_dashboard .border-left-warning {
+    border-left: 0.25rem solid #f6c23e !important;
+}
+.o_attendance_dashboard .border-left-danger {
+    border-left: 0.25rem solid #e74a3b !important;
+}
+.o_attendance_dashboard .text-xs {
+    font-size: .7rem;
+}

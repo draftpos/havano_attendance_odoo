@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.havano_attendance</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_attendance.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='overtime_settings']" position="after">
+                <block title="Check-in / Check-out Settings">
+                    <setting title="Define Attendance Check-in and Check-out thresholds" help="Set thresholds for early and late check-ins and check-outs (in 24h decimal format).">
+                        <div class="content-group">
+                            <div class="mt16">
+                                <label for="attendance_start_time" class="o_form_label"/>
+                                <field name="attendance_start_time" widget="float_time"/>
+                            </div>
+                            <div class="mt16">
+                                <label for="attendance_earliest_check_in" class="o_form_label"/>
+                                <field name="attendance_earliest_check_in" widget="float_time"/>
+                            </div>
+                            <div class="mt16">
+                                <label for="attendance_end_time" class="o_form_label"/>
+                                <field name="attendance_end_time" widget="float_time"/>
+                            </div>
+                            <div class="mt16">
+                                <label for="attendance_earliest_check_out" class="o_form_label"/>
+                                <field name="attendance_earliest_check_out" widget="float_time"/>
+                            </div>
+                            <div class="mt16">
+                                <label for="attendance_late_time" class="o_form_label"/>
+                                <field name="attendance_late_time" widget="float_time"/>
+                            </div>
+                            <div class="mt16">
+                                <label for="attendance_late_check_out" class="o_form_label"/>
+                                <field name="attendance_late_check_out" widget="float_time"/>
+                            </div>
+                            <div class="mt16">
+                                <label for="attendance_required_hours" class="o_form_label"/>
+                                <field name="attendance_required_hours" widget="float_time"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
