@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Custom Tree View -->
+    <record id="view_hr_attendance_report_tree" model="ir.ui.view">
+        <field name="name">hr.attendance.report.tree</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <list string="Attendance Report" expand="1" default_order="check_in desc">
+                <field name="employee_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="worked_hours" widget="float_time" sum="Total Hours"/>
+                <field name="check_in_status" widget="badge" 
+                       decoration-success="check_in_status == 'normal'" 
+                       decoration-warning="check_in_status == 'early'" 
+                       decoration-danger="check_in_status == 'late'"/>
+                <field name="check_out_status" widget="badge" 
+                       decoration-success="check_out_status == 'normal'" 
+                       decoration-warning="check_out_status == 'early'" 
+                       decoration-danger="check_out_status == 'late'"
+                       decoration-info="check_out_status == 'pending'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Custom Search View -->
+    <record id="view_hr_attendance_report_search" model="ir.ui.view">
+        <field name="name">hr.attendance.report.search</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <search string="Attendance Report Search">
+                <field name="employee_id"/>
+                <filter string="Late Check-ins" name="late_check_in" domain="[('check_in_status', '=', 'late')]"/>
+                <filter string="Early Check-outs" name="early_check_out" domain="[('check_out_status', '=', 'early')]"/>
+                <filter string="Pending Check-outs" name="pending_check_out" domain="[('check_out_status', '=', 'pending')]"/>
+                <group>
+                    <filter string="Employee" name="group_employee" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Check-in Month" name="group_check_in_month" context="{'group_by': 'check_in:month'}"/>
+                    <filter string="Check-in Status" name="group_check_in_status" context="{'group_by': 'check_in_status'}"/>
+                    <filter string="Check-out Status" name="group_check_out_status" context="{'group_by': 'check_out_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for Custom Report -->
+    <record id="action_havano_attendance_report" model="ir.actions.act_window">
+        <field name="name">Attendance Custom Report</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">list,pivot,graph</field>
+        <field name="view_id" ref="view_hr_attendance_report_tree"/>
+        <field name="search_view_id" ref="view_hr_attendance_report_search"/>
+        <field name="context">{'search_default_group_employee': 1, 'search_default_group_check_in_month': 1}</field>
+    </record>
+
+    <!-- Override Reporting Menu -->
+    <record id="hr_attendance.menu_hr_attendance_attendance_reporting" model="ir.ui.menu">
+        <field name="action" ref="action_havano_attendance_report"/>
+    </record>
+
+</odoo>

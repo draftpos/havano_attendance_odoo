@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="havano_attendance_dashboard_action" model="ir.actions.client">
+        <field name="name">Attendance Dashboard</field>
+        <field name="tag">havano_attendance_odoo.dashboard</field>
+    </record>
+
+    <menuitem id="menu_havano_attendance_dashboard" 
+              name="Dashboard" 
+              parent="hr_attendance.menu_hr_attendance_root" 
+              sequence="1" 
+              action="havano_attendance_dashboard_action" 
+              groups="hr_attendance.group_hr_attendance_officer"/>
+</odoo>
